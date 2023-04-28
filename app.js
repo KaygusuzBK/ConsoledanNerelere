@@ -12,7 +12,6 @@ function addPerson() {
   var number = prompt("Numara girin:");
   var person = new Person(name, number);
   phonebook.push(person);
-  alert("Kişi eklendi!");
 }
 function list() {
   write("Kişiler:");
@@ -20,41 +19,47 @@ function list() {
     console.log("İsmi: " + person.name + "  Numara:" + person.number);
   });
 }
-function deletePerson() {
-  var deleted = prompt("Silinecek kişinin ismini giriniz:");
-  if (phonebook.indexOf(deleted) > -1) {
-    phonebook.splice(phonebook.indexOf(deleted), 1);
-    write("Kişi silindi!");
+function deletePerson(deleted) {
+  if (phonebook.find((person) => person.name === deleted)) {
+    phonebook = phonebook.filter((person) => person.name !== deleted);
   } else write("Kişi bulunamadı!");
 }
 function editPerson() {
   var edited = prompt("Düzenlenecek kişinin ismini giriniz:");
-  if (phonebook.indexOf(edited) > -1) {
-    var newName = prompt("Yeni ismi giriniz:");
-    var newNumber = prompt("Yeni numarayı giriniz:");
-    phonebook[phonebook.indexOf(edited)].name = newName;
-    phonebook[phonebook.indexOf(edited)].number = newNumber;
+  if (phonebook.find((person) => person.name === edited)) {
+    deletePerson(edited);
+    addPerson();
     write("Kişi düzenlendi!");
   } else write("Kişi bulunamadı!");
 }
 
-while (true) {
-  var command = prompt("Komut girin (add/edit/delete/list/quit");
-  if (command === "add") {
-    addPerson();
-  } else if (command === "edit") {
-    list();
-    editPerson();
-  } else if (command === "delete") {
-    list();
-    deletePerson();
-  } else if (command === "list") {
-    list();
-  } else if (command === "quit") {
-    console.log("Çıkış yapılıyor...");
-    break;
-  } else {
-    write("Hatalı komut girdin");
-    break;
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+function selection() {
+  while (true) {
+    var command = prompt("Komut girin (add/edit/delete/list/quit");
+    if (command === "add") {
+      addPerson();
+      alert("Kişi eklendi!");
+    } else if (command === "edit") {
+      list();
+      editPerson();
+    } else if (command === "delete") {
+      list();
+      var deleted = prompt("Silinecek kişinin ismini giriniz:");
+      deletePerson(deleted);
+      write("Kişi silindi!");
+    } else if (command === "list") {
+      list();
+    } else if (command === "quit") {
+      console.log("Çıkış yapılıyor...");
+      sleep(15000);
+      select();
+    } else {
+      write("Hatalı komut girdin");
+    }
   }
 }
+selection();
