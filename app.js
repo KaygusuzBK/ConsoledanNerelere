@@ -1,53 +1,60 @@
 var phonebook = [];
 
+function write(message) {
+  console.log(message);
+}
 function Person(name, number) {
   this.name = name;
   this.number = number;
 }
+function addPerson() {
+  var name = prompt("İsim girin:");
+  var number = prompt("Numara girin:");
+  var person = new Person(name, number);
+  phonebook.push(person);
+  alert("Kişi eklendi!");
+}
+function list() {
+  write("Kişiler:");
+  phonebook.forEach(function (person) {
+    console.log("İsmi: " + person.name + "  Numara:" + person.number);
+  });
+}
+function deletePerson() {
+  var deleted = prompt("Silinecek kişinin ismini giriniz:");
+  if (phonebook.indexOf(deleted) > -1) {
+    phonebook.splice(phonebook.indexOf(deleted), 1);
+    write("Kişi silindi!");
+  } else write("Kişi bulunamadı!");
+}
+function editPerson() {
+  var edited = prompt("Düzenlenecek kişinin ismini giriniz:");
+  if (phonebook.indexOf(edited) > -1) {
+    var newName = prompt("Yeni ismi giriniz:");
+    var newNumber = prompt("Yeni numarayı giriniz:");
+    phonebook[phonebook.indexOf(edited)].name = newName;
+    phonebook[phonebook.indexOf(edited)].number = newNumber;
+    write("Kişi düzenlendi!");
+  } else write("Kişi bulunamadı!");
+}
 
 while (true) {
   var command = prompt("Komut girin (add/edit/delete/list/quit");
-
   if (command === "add") {
-    var name = prompt("isim giriniz");
-    var number = prompt("numara giriniz");
-    var person = new Person(name, number);
-    phonebook.push(person);
-    alert("Kişi eklendi!");
+    addPerson();
   } else if (command === "edit") {
-    console.log("kişi listesi:");
-    phonebook.forEach(function (person) {
-      console.log("İsmi: " + person.name + "  Numara:" + person.number);
-    });
-    var edited = prompt("Düzenlenecek kişinin ismini giriniz:");
-    if (phonebook.indexOf(edited) > -1) {
-      var name = prompt("isim giriniz");
-      var number = prompt("numara giriniz");
-      var person = new Person(name, number);
-      phonebook.splice(phonebook.indexOf(edited), 1, person);
-      console.log("Kişi düzenlendi!");
-    } else console.log("Kişi yok");
+    list();
+    editPerson();
   } else if (command === "delete") {
-    console.log("Notlar:");
-    console.log("kişi listesi:");
-    phonebook.forEach(function (person) {
-      console.log("İsmi: " + person.name + "  Numara:" + person.number);
-    });
-    var deleted = prompt("Silinecek kişinin ismini giriniz:");
-    if (phonebook.indexOf(deleted) > -1) {
-      phonebook.splice(phonebook.indexOf(deleted), 1);
-      console.log("Kişi silindi!");
-    } else console.log("Kişi bulunamadı!");
+    list();
+    deletePerson();
   } else if (command === "list") {
-    console.log("kişi listesi:");
-    phonebook.forEach(function (person) {
-      console.log("İsmi: " + person.name + "  Numara:" + person.number);
-    });
+    list();
   } else if (command === "quit") {
-    console.log("Uygulama kapatıldı.");
+    console.log("Çıkış yapılıyor...");
     break;
   } else {
-    console.log("Geçersiz komut, lütfen tekrar deneyin.");
+    write("Hatalı komut girdin");
     break;
   }
 }
