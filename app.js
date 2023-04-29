@@ -10,8 +10,14 @@ function Person(name, number) {
 function addPerson() {
   var name = prompt("İsim girin:");
   var number = prompt("Numara girin:");
-  var person = new Person(name, number);
-  phonebook.push(person);
+  if ( name === null || number === null) { 
+    selection();
+    alert("Kişi eklendi!");
+  } else if (name.length > 1 && number.length > 1) {
+    phonebook.push(new Person(name, number));
+  } else {
+    addPerson();
+  }
 }
 function list() {
   write("Kişiler:");
@@ -32,17 +38,15 @@ function editPerson() {
     write("Kişi düzenlendi!");
   } else write("Kişi bulunamadı!");
 }
-
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 function selection() {
   while (true) {
-    var command = prompt("Komut girin (add/edit/delete/list/quit");
+    var command = prompt("Komut girin (add/edit/delete/list/qiut)");
     if (command === "add") {
       addPerson();
-      alert("Kişi eklendi!");
     } else if (command === "edit") {
       list();
       editPerson();
@@ -53,13 +57,13 @@ function selection() {
       write("Kişi silindi!");
     } else if (command === "list") {
       list();
-    } else if (command === "quit") {
-      console.log("Çıkış yapılıyor...");
-      sleep(15000);
-      select();
+      selection();
     } else {
       write("Hatalı komut girdin");
+      selection();      
+      break;
     }
   }
 }
 selection();
+
