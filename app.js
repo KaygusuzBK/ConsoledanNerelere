@@ -3,67 +3,75 @@ var phonebook = [];
 function write(message) {
   console.log(message);
 }
-function Person(name, number) {
-  this.name = name;
-  this.number = number;
-}
-function addPerson() {
-  var name = prompt("İsim girin:");
-  var number = prompt("Numara girin:");
-  if ( name === null || number === null) { 
-    selection();
-    alert("Kişi eklendi!");
-  } else if (name.length > 1 && number.length > 1) {
-    phonebook.push(new Person(name, number));
-  } else {
-    addPerson();
+class Person {
+  constructor(id, name, number) {
+    this.id = id;
+    this.name = name;
+    this.number = number;
   }
 }
+
+function addPerson(name, number) {
+  var name = prompt("İsim girin:");
+  var number = prompt("Numara girin:");
+  if (name === null || number === null) {
+    alert("İşlem iptal edildi");
+  } else if (name.length > 2 && number.length > 2) {
+    var id = phonebook.length + 1;
+    var person = new Person(id, name, number);
+    phonebook.push(person);
+    write("Kişi eklendi!");
+  } else { addPerson(); }
+}
 function list() {
-  write("Kişiler:");
-  phonebook.forEach(function (person) {
-    console.log("İsmi: " + person.name + "  Numara:" + person.number);
+  write("Kişiler");
+  phonebook.forEach((person) => {
+    write(person.id + "- İSMİ: " + person.name + " NUMARASI: " + person.number);
   });
 }
 function deletePerson(deleted) {
-  if (phonebook.find((person) => person.name === deleted)) {
-    phonebook = phonebook.filter((person) => person.name !== deleted);
+  if (phonebook.find((person) => person.id === parseInt(deleted))) {
+    phonebook = phonebook.filter((person) => person.id !== parseInt(deleted));
+    write("Kişi silindi!");
   } else write("Kişi bulunamadı!");
 }
 function editPerson() {
-  var edited = prompt("Düzenlenecek kişinin ismini giriniz:");
-  if (phonebook.find((person) => person.name === edited)) {
-    deletePerson(edited);
-    addPerson();
+  var edited = prompt("Düzenlenecek kişinin id'sini girin:");
+  if (phonebook.find((person) => person.id === parseInt(edited))) {
+    var name = prompt(`düzenlenecek kişinin adı: ${phonebook[edited - 1].name} yeni adı:`);
+    var number = prompt(`düzenlenecek kişinin numarası: ${phonebook[edited - 1].number} yeni numarası:`);
+    person = new Person(edited, name, number);  
+    phonebook[edited - 1] = person;
     write("Kişi düzenlendi!");
-  } else write("Kişi bulunamadı!");
+  } else write("Kişi düzenlenemedi!");
 }
 function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-function selection() {
+function selected() {
   while (true) {
     var command = prompt("Komut girin (add/edit/delete/list/qiut)");
     if (command === "add") {
       addPerson();
-    } else if (command === "edit") {
+    } else if (command === "edit" && phonebook.length > 0) {
       list();
       editPerson();
-    } else if (command === "delete") {
+    } else if (command === "delete" && phonebook.length > 0) {
       list();
-      var deleted = prompt("Silinecek kişinin ismini giriniz:");
+      var deleted = prompt("Silinecek kişinin id'sini girin:");
       deletePerson(deleted);
-      write("Kişi silindi!");
+      
     } else if (command === "list") {
       list();
-      selection();
+    } else if (command === "quit") {
+      break;
+      write("Çıkış yapılıyor...");
     } else {
       write("Hatalı komut girdin");
-      selection();      
+      selected();
       break;
     }
   }
 }
-selection();
-
+selected();
