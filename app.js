@@ -1,5 +1,6 @@
 var phonebook = [];
 
+var position = -1;
 function write(message) {
   console.log(message);
 }
@@ -9,9 +10,9 @@ class Person {
     this.name = name;
     this.number = number;
   }
-}
 
-function addPerson(name, number) {
+}
+function addPerson(name, number) { // kullanıcıdan alınan bilgileri aldığım için fonkisiyonun parametrelerine gerek yok ! 
   var name = prompt("İsim girin:");
   var number = prompt("Numara girin:");
   if (name === null || number === null) {
@@ -25,29 +26,35 @@ function addPerson(name, number) {
 }
 function list() {
   write("Kişiler");
+  
   phonebook.forEach((person) => {
     write(person.id + "- İSMİ: " + person.name + " NUMARASI: " + person.number);
   });
 }
 function deletePerson(deleted) {
-  if (phonebook.find((person) => person.id === parseInt(deleted))) {
-    phonebook = phonebook.filter((person) => person.id !== parseInt(deleted));
+  if (deleted === null) {
+    alert("İşlem iptal edildi");
+  } else if (deleted > 0 && deleted <= phonebook.length) {
+    phonebook.splice(deleted - 1, 1);
     write("Kişi silindi!");
+    for (var i = 0; i < phonebook.length; i++) { // id'leri yeniden düzenlemek için ebem
+      phonebook[i].id = i + 1;
+    }  
   } else write("Kişi bulunamadı!");
 }
 function editPerson() {
   var edited = prompt("Düzenlenecek kişinin id'sini girin:");
-  if (phonebook.find((person) => person.id === parseInt(edited))) {
-    var name = prompt(`düzenlenecek kişinin adı: ${phonebook[edited - 1].name} yeni adı:`);
-    var number = prompt(`düzenlenecek kişinin numarası: ${phonebook[edited - 1].number} yeni numarası:`);
-    person = new Person(edited, name, number);  
-    phonebook[edited - 1] = person;
+  idcheck = phonebook.find((person) => person.id === parseInt(edited));
+  if (idcheck) {
+    var nName = prompt(`düzenlenecek kişinin adı: ${phonebook[edited - 1].name} yeni adı:`);
+    var nNumber = prompt(`düzenlenecek kişinin numarası: ${phonebook[edited - 1].number} yeni numarası:`);
+    phonebook[edited - 1].id = edited;
+    phonebook[edited - 1].name = nName;
+    phonebook[edited - 1].number = nNumber;
     write("Kişi düzenlendi!");
   } else write("Kişi düzenlenemedi!");
 }
-function sleep(ms) {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
+
 
 function selected() {
   while (true) {
@@ -65,8 +72,8 @@ function selected() {
     } else if (command === "list") {
       list();
     } else if (command === "quit") {
-      break;
       write("Çıkış yapılıyor...");
+      break;
     } else {
       write("Hatalı komut girdin");
       selected();
