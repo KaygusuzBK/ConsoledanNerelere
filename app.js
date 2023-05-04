@@ -1,6 +1,10 @@
 var phonebook = [];
 
-var position = -1;
+function getUserInfo() {
+  var name = prompt("İsim girin:");
+  var number = prompt("Numara girin:");
+  return { name, number };
+}
 function write(message) {
   console.log(message);
 }
@@ -10,11 +14,9 @@ class Person {
     this.name = name;
     this.number = number;
   }
-
 }
-function addPerson(name, number) { // kullanıcıdan alınan bilgileri aldığım için fonkisiyonun parametrelerine gerek yok ! 
-  var name = prompt("İsim girin:");
-  var number = prompt("Numara girin:");
+function addPerson(name, number) {
+  var { name, number } = getUserInfo();
   if (name === null || number === null) {
     alert("İşlem iptal edildi");
   } else if (name.length > 2 && number.length > 2) {
@@ -31,11 +33,11 @@ function list() {
     write(person.id + "- İSMİ: " + person.name + " NUMARASI: " + person.number);
   });
 }
-function deletePerson(deleted) {
-  if (deleted === null) {
+function deletePerson(deleteId) {
+  if (deleteId === null) {
     alert("İşlem iptal edildi");
-  } else if (deleted > 0 && deleted <= phonebook.length) {
-    phonebook.splice(deleted - 1, 1);
+  } else if (deleteId > 0 && deleteId <= phonebook.length) {
+    phonebook.splice(deleteId - 1, 1);
     write("Kişi silindi!");
     for (var i = 0; i < phonebook.length; i++) { // id'leri yeniden düzenlemek için ebem
       phonebook[i].id = i + 1;
@@ -58,7 +60,7 @@ function editPerson() {
 
 function selected() {
   while (true) {
-    var command = prompt("Komut girin (add/edit/delete/list/qiut)");
+    var command = prompt("Komut girin (add/edit/delete/list/quit)");
     if (command === "add") {
       addPerson();
     } else if (command === "edit" && phonebook.length > 0) {
@@ -66,8 +68,8 @@ function selected() {
       editPerson();
     } else if (command === "delete" && phonebook.length > 0) {
       list();
-      var deleted = prompt("Silinecek kişinin id'sini girin:");
-      deletePerson(deleted);
+      var deleteId = prompt("Silinecek kişinin id'sini girin:");
+      deletePerson(deleteId);
       
     } else if (command === "list") {
       list();
