@@ -1,0 +1,27 @@
+body {
+    background-color: rgb(24, 26, 27)
+}
+
+.h1{
+    color: white;
+}
+
+label{
+    color: white;
+}
+input{
+    margin: 3px;
+    padding: 5px;
+}
+
+button{
+    margin: 3px;
+    padding: 5px;
+
+}
+
+.col-12 button{
+    background-color: green;
+    color: white;
+}
+

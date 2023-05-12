@@ -16,10 +16,9 @@ class Person {
   }
 }
 function addPerson(name, number) {
-  var { name, number } = getUserInfo();
   if (name === null || number === null) {
     alert("İşlem iptal edildi");
-  } else if (name.length > 2 && number.length > 2) {
+  } else if (name !== "" && number !== "") {
     var id = phonebook.length + 1;
     var person = new Person(id, name, number);
     phonebook.push(person);
@@ -57,12 +56,12 @@ function editPerson() {
   } else write("Kişi düzenlenemedi!");
 }
 
-
 function selected() {
   while (true) {
     var command = prompt("Komut girin (add/edit/delete/list/quit)");
     if (command === "add") {
-      addPerson();
+        getUserInfo();
+        addPerson(getUserInfo.name, getUserInfo.number);
     } else if (command === "edit" && phonebook.length > 0) {
       list();
       editPerson();
