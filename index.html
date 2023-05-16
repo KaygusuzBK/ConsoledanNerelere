@@ -4,9 +4,42 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css">
     <title>Not</title>
   </head>
   <body>
+    <!-- <ol> -->
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <h1 class="h1">Telefon Defteri</h1>
+        <form>
+          <label for="name">Full Name</label>
+          <input type="text" id="name" placeholder="Erdal" /><br /><br />
+          <label for="number">Number</label>
+          <input type="text" id="number" placeholder="0123456789" />
+        </form>
+        <button id="addBtn">Add</button>
+        <button id="updateBtn">Update</button>
+        <button id="searchBtn">Search</button>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-12">
+        <table id="table">
+          <thead>
+            <tr>
+              <th>Full Name</th>
+              <th>Number</th>
+            </tr>
+          </thead>
+          <tbody id="tbody">
+            <tr>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     <script src="app.js"></script>
   </body>
 </html>

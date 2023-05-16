@@ -1,39 +1,39 @@
-var notes = JSON.parse(localStorage.getItem("notes")) || [];
+const name = document.querySelector('#name');
+const number = document.querySelector('#number');
+const addBtn = document.querySelector('#addBtn');
+const searchBtn = document.querySelector('#searchBtn');
+const deleteBtn = document.querySelector('#deleteBtn');
+const updateBtn = document.querySelector('#updateBtn');
 
-while (true) {
-  var command = prompt("Komut girin (add/edit/delete/list/quit):");
 
-  if (command === "add") {
-    var note = prompt("Notunuzu girin:");
-    notes.push(note);
-    alert("Not eklendi!");
-  } else if (command === "edit") {
-    console.log("Notlar:");
-    for (var i = 0; i < notes.length; i++) {
-      console.log(i + "- " + notes[i]);
-    }
-    var index = prompt("Düzenlenecek notun sırasını seçiniz:");
-    var newNote = prompt("Yeni notunuzu girin:");
-    notes[index] = newNote;
-    console.log("Not düzenlendi!");
-  } else if (command === "delete") {
-    console.log("Notlar:");
-    for (var i = 0; i < notes.length; i++) {
-      console.log(i + "- " + notes[i]);
-    }
-    var index = prompt("Silinecek notun indeksini girin:");
-    notes.splice(index, 1);
-    console.log("Not silindi!");
-  } else if (command === "list") {
-    console.log("Notlar:");
-    for (var i = 0; i < notes.length; i++) {
-      console.log(i + "- " + notes[i]);
-    }
-  } else if (command === "quit") {
-    console.log("Uygulama kapatıldı.");
-    localStorage.setItem("notes", JSON.stringify(notes));
-    break;
-  } else {
-    console.log("Geçersiz komut, lütfen tekrar deneyin.");
+addBtn.onclick = () => {
+  console.log(`${name.value} ${number.value}`);
+  let tname = document.createElement('td');
+  let tnumber = document.createElement('td');
+  if (name.value === '' || number.value === '') {
+    alert('BOŞLUKLARI DOLDURALIM');
+    return;
   }
+  tname.innerHTML = name.value;
+  tnumber.innerHTML = number.value;
+  let tr = document.createElement('tr');
+  tr.appendChild(tname); // 
+  tr.appendChild(tnumber);
+  document.querySelector('#table').appendChild(tr);
+  name.value = '';
+  number.value = '';
+};
+
+deleteBtn.onclick = () => {
+  let tr = document.querySelector('#table tr:last-child');
+  tr.remove();
+}
+
+updateBtn.onclick = () => {
+  let tr = document.querySelector('#table tr:last-child');
+  let tds = tr.querySelectorAll('td');
+  tds[0].innerHTML = name.value;
+  tds[1].innerHTML = number.value;
+  name.value = '';
+  number.value = '';
 }
