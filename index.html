@@ -4,44 +4,61 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="https://picsum.photos/200" type="image/x-icon">
-    <link rel="stylesheet" href="style.css">
-    
-    <title>Not</title>
+    <link
+      rel="shortcut icon"
+      href="https://picsum.photos/200"
+      type="image/x-icon"
+    />
+    <link rel="stylesheet" href="style.css" />
+
+    <title>Telefon Defteri</title>
   </head>
   <body>
-    <!-- <ol> -->
     <div class="container">
       <div class="row">
         <div class="col-12">
-          <h1 class="h1">Telefon Defteri</h1>
-        <form id="addForm" onsubmit="formSubmit(e)">
-          <label for="name">Full Name</label>
-          <input type="text" id="name" placeholder="Erdal" /><br /><br />
-          <label for="number">Number</label>
-          <input type="text" id="number" placeholder="0123456789" />
-        </form>
-        <button id="addBtn" type="submit" >Add</button>
-        <button id="updateBtn">Update</button>
-        <button id="searchBtn">Search</button>
+          <center>
+            <h1 class="h1">Telefon Defteri</h1>
+            <form id="addForm" onsubmit="formSubmit(e)">
+              <label for="name">Full Name</label>
+              <input type="text" id="name" placeholder="Erdal" /><br /><br />
+              <label for="number">Number</label>
+              <input type="text" id="number" placeholder="0123456789" />
+            </form>
+            <button id="addBtn" type="submit">Add</button>
+            <button id="searchBtn">Search</button>
+            <br><br>
+            <div class="row">
+              <div class="col-12">
+                <button
+                  id="editBtn"
+                  style="display: none"
+                  onclick="editPersonData()"
+                >
+                  Edit
+                </button>
+              </div>
+            </div>
+          </center>
+        </div>
       </div>
-    </div>  
-    <br>
-    <div class="row">
-      <div class="col-12">
-        <table id="table">
-          <thead>
-            <tr>
-              <th>Full Name</th>
-              <th>Number</th>
-              <th>Delete</th>
-            </tr>
-          </thead>
-          <tbody id="tbody">
-          </tbody>
-        </table>
+      <br />
+      <div class="row">
+        <div class="col-12">
+          <table id="table">
+            <thead>
+              <tr>
+                <th>Full Name</th>
+                <th>Number</th>
+                <th>Update</th>
+              </tr>
+            </thead>
+            <tbody id="tbody"></tbody>
+          </table>
+        </div>
       </div>
-      <script src="person.js"></script>
+    </div>
+    <script src="person.js"></script>
     <script src="app.js"></script>
   </body>
 </html>

@@ -1,53 +1,36 @@
-<<<<<<< Updated upstream
-tr{
-    background-color: #f2f2f2;
-    border: 1px solid #ddd;
-    padding: 8px;
+.container {
+  width: 80%;
+  margin: 0 auto;
 }
 
-table{
-    width: 100%;
-    border-collapse: collapse;
-    text-align: center;
-    margin-top: 7px;
+.row {
+  margin-bottom: 10px;
 }
 
-th, td{
-    text-align: center;
-    padding: 10px;
+table {
+  width: 100%;
+  border-collapse: collapse;
 }
 
-th{
-    background-color: #6a4caf;
-    color: white;
+th,
+td {
+  padding: 10px;
+  text-align: center;
+  border: 1px solid red;
 }
 
-=======
-body {
-    background-color: rgb(24, 26, 27)
-}
-
-.h1{
-    color: white;
-}
-
-label{
-    color: white;
-}
-input{
-    margin: 3px;
-    padding: 5px;
+button {
+  padding: 5px 10px;
+  margin-left: 5px;
+  cursor: pointer;
 }
 
 button{
-    margin: 3px;
-    padding: 5px;
-
-}
-
-.col-12 button{
     background-color: green;
     color: white;
+    border: none;
 }
->>>>>>> Stashed changes
 
+button:hover {
+  background-color: red
+}
