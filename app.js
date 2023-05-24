@@ -43,7 +43,7 @@ function editButton(id) {
   if (person) {
     document.querySelector("#name").value = person.name;
     document.querySelector("#number").value = person.number;
-    document.getElementById("addBtn").style.display = "none";
+    document.getElementById("addBtn").style.display = "true";
     document.getElementById("editBtn").style.display = "inline-block";
     document.getElementById("editBtn").setAttribute("data-id", id);
     document.getElementById("editBtn").onclick = function () {
