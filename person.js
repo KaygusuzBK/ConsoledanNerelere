@@ -20,6 +20,11 @@ function getPhonebook() {
   return phonebook;
 }
 
+function getPerson(id) {
+  const person = phonebook.find((person) => person.id === id);
+  return person;
+}
+
 function deletePerson(deleteId) {
   if (deleteId > 0 && deleteId <= phonebook.length) {
     phonebook.splice(deleteId - 1, 1);
@@ -35,4 +40,10 @@ function editPerson(id, name, number) {
     person.name = name;
     person.number = number;
   }
+}
+
+function list() {
+  phonebook.forEach((person) => {
+    console.log(person.id + "" + person.name + " " + person.number);
+  });
 }

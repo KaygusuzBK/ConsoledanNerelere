@@ -39,47 +39,23 @@ function deleteButton(id) {
 }
 
 function editButton(id) {
-  const person = phonebook.find((person) => person.id === id);
-  if (person) {
-    document.querySelector("#name").value = person.name;
-    document.querySelector("#number").value = person.number;
-    document.getElementById("addBtn").style.display = "none";
-    document.getElementById("editBtn").style.display = "inline-block";
-    document.getElementById("editBtn").setAttribute("data-id", id);
-    document.getElementById("editBtn").onclick = function () {
-      editPersonData(id);
-    };
-  }
+  const { name, number } = getPerson(id);
+  document.getElementById("editBtn").style.display = "inline-block";
+  setCurrentFormData(id, name, number);
 }
 
 function editPersonData(id) {
-  const name = document.querySelector("#name").value;
-  const number = document.querySelector("#number").value;
+  const { name, number } = getCurrentFormData();
   editPerson(id, name, number);
   renderTable();
-  document.getElementById("addForm").reset();
-  document.getElementById("addBtn").style.display = "inline-block";
-  document.getElementById("editBtn").style.display = "none";
-  document.getElementById("editBtn").removeAttribute("data-id");
 }
 
-function getPerson(id) {
-  const person = phonebook.find((person) => person.id === id);
+function searchPerson(name, number) {
+  const person = phonebook.find(
+    (person) => person.name === name || person.number === number
+  );
   return person;
 }
-
-function editPersonData(id) {
-  const name = document.querySelector("#name").value;
-  const number = document.querySelector("#number").value;
-  editPerson(id, name, number);
-  renderTable();
-}
-
-addBtn.onclick = () => {
-  const { name, number } = getCurrentFormData();
-  addPerson(name, number);
-  renderTable();
-};
 
 addBtn.onclick = () => {
   const { name, number } = getCurrentFormData();
@@ -93,8 +69,23 @@ editBtn.onclick = () => {
   renderTable();
 };
 
+searchBtn.onclick = () => {
+  const { name, number } = getCurrentFormData();
+  searchPerson(name, number);
+  console.log(searchPerson(name, number));
+  renderTable();
+};
+
 function getCurrentFormData() {
   const name = document.querySelector("#name").value;
   const number = document.querySelector("#number").value;
   return { name, number };
+}
+
+function setCurrentFormData(id, name, number) {
+  document.querySelector("#name").value = name;
+  document.querySelector("#number").value = number;
+  document.getElementById("editBtn").onclick = function () {
+    editPersonData(id);
+  };
 }
