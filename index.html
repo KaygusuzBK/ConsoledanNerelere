@@ -24,17 +24,14 @@
               <label for="name">Full Name</label>
               <input type="text" id="name" placeholder="Erdal" /><br /><br />
               <label for="number">Number</label>
-              <input type="text" id="number" placeholder="0123456789" />
+              <input type="number" id="number" placeholder="0123456789" />
             </form>
+            <br>
             <button id="addBtn" type="submit">Add</button>
-            <button id="searchBtn">Search</button>
-            <br /><br />
-            <div class="row">
-              <div class="col-12">
                 <button
                   id="editBtn"
                   style="display: none"
-                  onclick="editPersonData()"
+                  onclick="editPersonData()"x 
                 >
                   Edit
                 </button>
@@ -43,6 +40,10 @@
           </center>
         </div>
       </div>
+      <br>
+      <button id="searchBtn" onclick="aramaYap()">Search</button>
+      <input type="text" id="searchWord">
+      <button id="restart">Sıfırla</button>
       <br />
       <div class="row">
         <div class="col-12">
