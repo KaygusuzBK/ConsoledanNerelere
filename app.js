@@ -8,7 +8,6 @@ const tbody = document.querySelector("#tbody");
 const restart = document.querySelector("#restart");
 
 function CreateTable(person) {
-  console.log(person);
   let tr = document.createElement("tr");
   tr.innerHTML = `
   <td>${person.name}</td>
@@ -36,7 +35,7 @@ function formSubmit(e) {
   addPerson(name, number);
   renderTable();
   document.getElementById("addForm").reset();
-}
+} 
 
 function deleteButton(id) {
   deletePerson(id);
