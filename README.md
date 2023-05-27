@@ -1,5 +1,3 @@
-Elbette, aşağıda bahsettiğiniz proje için bir README dosyası örneği bulabilirsiniz:
-
 # Telefon Rehberi Uygulaması
 
 Bu basit telefon rehberi uygulaması, sadece HTML, CSS ve saf JavaScript kullanılarak oluşturulmuştur. Bu uygulama sayesinde kullanıcılar, kişi bilgilerini kaydedebilir, düzenleyebilir ve silebilir.
@@ -63,9 +61,3 @@ git push origin master
 Bu proje MIT Lisansı ile lisanslanmıştır. Detaylar için [LICENSE](LICENSE) dosyasını inceleyebilirsiniz.
 
 ---
-
-Bu README dosyası, proje hakkında temel bilgileri ve kurulum talimatlarını içermektedir. Kullanıcılar, projeyi klonlayarak veya ZIP dosyasını indirerek kendi yerel ortamlarında çalıştırabilirler. Ayrıca, katkıda bulunma sürecini anlatan bir bölüm de içermektedir.
-
-Lütfen unutmayın, bu yalnızca bir README
-
- örneğidir ve projeyle ilgili özel gereksinimlere veya talimatlara uyarlamak isteyebilirsiniz.
