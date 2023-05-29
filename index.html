@@ -24,11 +24,12 @@
               <label for="number">Number</label>
               <input type="number" id="number" placeholder="0123456789" />
             </form>
-            <button id="addBtn" type="submit">Add</button>
+            <button id="addBtn" type="submit" class="btn btn-success">Add</button>
                 <button
                   id="editBtn"
                   style="display: none"
                   onclick="editPersonData()"x 
+                  class="btn btn-warning"
                 >
                   Edit
                 </button>
@@ -36,9 +37,9 @@
             </div>
         </div>
       </div>
-      <button id="searchBtn" onclick="aramaYap()">Search</button>
+      <button id="searchBtn" onclick="aramaYap()" class="btn btn-primary">Search</button>
       <input type="text" id="searchWord">
-      <button id="restart" class="">Sıfırla</button>
+      <button id="restart" class="btn btn-primary">Sıfırla</button>
       <div class="row">
         <div class="col-12">
           <table id="table">
