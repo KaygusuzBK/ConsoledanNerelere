@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
     <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"/>
+
+    <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
       rel="stylesheet"
       integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
@@ -20,7 +24,7 @@
         <h1 class="h1">Telefon Defteri</h1>
         <form id="addForm" onsubmit="formSubmit(e)">
           <div class="row">
-            <div class="col">
+            <div class="col-lg-6 col-sm-12">
               <label for="">Full Name</label>
               <input
                 type="text"
@@ -30,7 +34,7 @@
                 aria-label="First name"
               />
             </div>
-            <div class="col">
+            <div class="col-lg-6 col-sm-12">
               <label for="">Number</label>
               <input
                 type="number"
@@ -48,10 +52,10 @@
     <hr />
     <div class="container text-center">
       <div class="row">
-        <div class="col-6">
+        <div class="col">
           <button id="addBtn" type="submit" class="btn btn-success">Add</button>
         </div>
-        <div class="col-6">
+        <div class="col">
           <button
             id="editBtn"
             style="display: none"
@@ -67,9 +71,9 @@
     </div>
 
     <hr />
-    <div class="container-fluid">
+    <div class="container>">
       <div class="row">
-        <div class="col-3">
+        <div class="col-lg-2 col-sm-12 col-md-3 col-12">
           <input
           type="text"
           id="searchWord"
@@ -78,7 +82,7 @@
           aria-describedby="inputGroup-sizing-default"
         />
         </div>
-        <div class="col-10">
+        <div class="col-lg-2 col-sm-12 col-md-4 col-12">
           <button id="searchBtn" onclick="aramaYap()" class="btn btn-primary">
             Search
           </button>
@@ -86,14 +90,14 @@
         </div>
       </div>
     </div>
-    <div class="container text-center">
+    <div class="container-fluid text-center">
       <div class="row">
         <table id="table" class="table table-striped">
           <thead>
             <tr>
-              <th scope="col">Full Name</th>
-              <th scope="col">Number</th>
-              <th scope="col">Update</th>
+              <th scope="col-5">Full Name</th>
+              <th scope="col-5">Number</th>
+              <th scope="col-2">Update</th>
             </tr>
           </thead>
           <tbody id="tbody"></tbody>
