@@ -17,98 +17,171 @@
     <title>Telefon Defteri</title>
   </head>
 
-  <body style="font-family: 'Playfair Display', serif">
-    <!-- İNPUTLAR -->
-    <div class="container text-center">
-      <div class="row">
-        <div class="col-12">
-          <h1 class="h1">Telefon Defteri</h1>
+  <body>
+    <!-- NAVBAR DÜMDÜZ -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Dropdown
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled">Disabled</a>
+            </li>
+          </ul>
+          <form class="d-flex" role="search">
+            <input
+              class="form-control me-2"
+              type="search"
+              placeholder="Search"
+              aria-label="Search"
+            />
+            <button
+              id="searchBtn"
+              onclick="aramaYap()"
+              class="btn btn-outline-success"
+              type="button"
+            >
+              Search
+            </button>
+          </form>
         </div>
-        <form id="addForm" onsubmit="formSubmit(e)">
-          <div class="row">
-            <div class="col-lg-3"></div>
-            <div class="col-lg-3 col-sm-12">
-              <label for="">Full Name</label>
+      </div>
+    </nav>
+
+    <!-- İNPUTLAR -->
+    <div class="container text-center mt-4">
+      <h1 class="h1">Telefon Defteri</h1>
+      <form id="addForm" onsubmit="formSubmit(event)">
+        <div class="row justify-content-center mt-4">
+          <div class="col-lg-1 col-sm-12 mt-1">
+            <!-- NAME LABEL -->
+            <label for="name" class="form-label">Full Name</label>
+          </div>
+          <div class="col-lg-3 col-sm-12">
+            <!-- NAME BUTTON -->
+            <div class="mb-3">
               <input
                 type="text"
                 id="name"
                 class="form-control"
                 placeholder="First name"
-                aria-label="First name"
+                aria-label="Full Name"
+                required
               />
             </div>
-            <div class="col-lg-3 col-sm-12">
-              <label for="">Number</label>
+          </div>
+          <div class="col-lg-1 col-sm-12 mt-1">
+            <!-- NUMBER LABEL -->
+            <label for="number" class="form-label">Number</label>
+          </div>
+          <div class="col-lg-3 col-sm-12">
+            <!-- NUMBER BUTTON -->
+            <div class="mb-3">
               <input
                 type="number"
                 id="number"
                 class="form-control"
                 placeholder="Number"
-                aria-label="Last name"
+                aria-label="Number"
               />
             </div>
           </div>
-        </form>
-      </div>
-    </div>
-    <hr />
-    <!-- ADD VE EDİT -->
-    <div class="container text-center">
-      <div class="row">
-        <div class="col">
-          <button id="addBtn" type="submit" class="btn btn-success">Add</button>
+          <div class="col-lg-2 col-sm-12">
+            <!-- ADD VE EDİT BUTTON -->
+            <button id="addBtn" type="button" class="btn btn-success">
+              Add
+            </button>
+            <button
+              id="editBtn"
+              type="button"
+              style="display: none"
+              onclick="editPersonData()"
+              class="btn btn-warning"
+            >
+              Edit
+            </button>
+          </div>
         </div>
-        <div class="col">
-          <button
-            id="editBtn"
-            style="display: none"
-            onclick="editPersonData()"
-            x
-            class="btn btn-warning"
-          >
-            Edit
-          </button>
-        </div>
-      </div>
+      </form>
     </div>
 
-    <hr />
     <!-- SEARCH -->
-    <div class="container-fluid text-left">
-      <div class="row">
-        <div class="col-lg-2 col-sm-12 col-md-3 col-12">
+    <div class="container p-3">
+      <div class="row justify-content-end">
+        <div class="col-lg-2 col-sm-12 col-md-4 col-12">
           <input
             type="search"
             placeholder="Search"
             id="searchWord"
-            class="form-control"
+            class="form-control mr-auto "
             aria-label="Search"
             aria-describedby="inputGroup-sizing-default"
           />
         </div>
-        <div class="col-lg-2 col-sm-12 col-md-4 col-12">
+        <div class="col-lg-2 col-sm-12 col-md-4 col-12 px-2">
           <button id="searchBtn" onclick="aramaYap()" class="btn btn-primary">
             Search
           </button>
-          <button id="restart" class="btn btn-danger">Sıfırla</button>
+          <button id="restart" class="btn btn-danger px-2">Sıfırla</button>
         </div>
       </div>
     </div>
+
     <!-- TABLO -->
-    <div class="container-fluid text-center">
+    <div class="container text-center p-4">
       <div class="row">
-        <table id="table" class="table table-striped">
-          <thead>
-            <tr>
-              <th scope="col-5">Full Name</th>
-              <th scope="col-5">Number</th>
-              <th scope="col-2">Update</th>
-            </tr>
-          </thead>
-          <tbody id="tbody"></tbody>
-        </table>
+        <div class="table-responsive">
+          <table id="table" class="table table-bordered table-striped-columns">
+            <thead class="table-dark">
+              <tr>
+                <th scope="col">Full Name</th>
+                <th scope="col">Number</th>
+                <th scope="col">Update</th>
+              </tr>
+            </thead>
+            <tbody id="tbody"></tbody>
+          </table>
+        </div>
       </div>
     </div>
+
+    <!-- scriptler -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
