@@ -85,46 +85,41 @@
     </nav>
 
     <!-- İNPUTLAR -->
-    <form action="">
-      <div class="container text-center mt-4">
-        <h1 class="h1">Telefon Defteri</h1>
+    <form class="needs-validation">
+      <div class="container mt-4">
+        <h1 class="h1 text-center">Telefon Defteri</h1>
         <form id="addForm" onsubmit="formSubmit(event)">
           <div class="row justify-content-center mt-4">
-            <div class="col-lg-4">
-              <label for="name" class="form-label">Full Name</label>
-            </div>
-            <div class="col-lg-4">
-              <label for="number" class="form-label">Number</label>
-            </div>
-            <div class="col-lg-4"></div>
-            <div class="col-lg-1"></div>
-            <div class="col-lg-3 col-sm-12 mb-3 p-3">
+            <div class="col-lg-3 col-sm-12 mb-3 p-3 ml-3">
               <!-- NAME İNPUT -->
+              <label for="name" class="form-label">First name</label>
               <input
                 type="text"
-                id="name"
                 class="form-control"
-                placeholder="First name"
-                aria-label="Full Name"
+                id="name"
+                value=""
                 required
               />
+              <div class="valid-feedback">Looks good!</div>
             </div>
             <div class="col-lg-1"></div>
-            <div class="col-lg-3 col-sm-12 mb-3 p-3">
-              
+            <div class="col-lg-3 col-sm-12 mb-3 p-3 ">
+              <label for="validationCustom02" class="form-label"
+                >Number</label
+              >
               <input
                 type="tel"
-                id="number"
                 class="form-control"
-                placeholder="Number"
-                aria-label="Number"
+                id="number"
+                value=" "
                 max="11"
                 required
               />
+              <div class="valid-feedback">Looks good!</div>
             </div>
-            <div class="col-lg-3 col-sm-12 p-3">
-              <!-- ADD VE EDİT BUTTON -->
-              <button id="addBtn" type="button" class="btn btn-success">
+            <!-- ADD VE EDİT BUTTON -->
+            <div class="text-center col-lg-3 col-sm-12 p-5 ">
+              <button id="addBtn" type="submit" class="btn btn-success">
                 Add
               </button>
               <button
