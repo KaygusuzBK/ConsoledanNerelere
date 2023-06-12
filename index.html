@@ -85,17 +85,21 @@
     </nav>
 
     <!-- İNPUTLAR -->
-    <div class="container text-center mt-4">
-      <h1 class="h1">Telefon Defteri</h1>
-      <form id="addForm" onsubmit="formSubmit(event)">
-        <div class="row justify-content-center mt-4">
-          <div class="col-lg-1 col-sm-12 mt-1">
-            <!-- NAME LABEL -->
-            <label for="name" class="form-label">Full Name</label>
-          </div>
-          <div class="col-lg-3 col-sm-12">
-            <!-- NAME BUTTON -->
-            <div class="mb-3">
+    <form action="">
+      <div class="container text-center mt-4">
+        <h1 class="h1">Telefon Defteri</h1>
+        <form id="addForm" onsubmit="formSubmit(event)">
+          <div class="row justify-content-center mt-4">
+            <div class="col-lg-4">
+              <label for="name" class="form-label">Full Name</label>
+            </div>
+            <div class="col-lg-4">
+              <label for="number" class="form-label">Number</label>
+            </div>
+            <div class="col-lg-4"></div>
+            <div class="col-lg-1"></div>
+            <div class="col-lg-3 col-sm-12 mb-3 p-3">
+              <!-- NAME İNPUT -->
               <input
                 type="text"
                 id="name"
@@ -105,51 +109,48 @@
                 required
               />
             </div>
-          </div>
-          <div class="col-lg-1 col-sm-12 mt-1">
-            <!-- NUMBER LABEL -->
-            <label for="number" class="form-label">Number</label>
-          </div>
-          <div class="col-lg-3 col-sm-12">
-            <!-- NUMBER BUTTON -->
-            <div class="mb-3">
+            <div class="col-lg-1"></div>
+            <div class="col-lg-3 col-sm-12 mb-3 p-3">
+              
               <input
-                type="number"
+                type="tel"
                 id="number"
                 class="form-control"
                 placeholder="Number"
                 aria-label="Number"
+                max="11"
+                required
               />
             </div>
+            <div class="col-lg-3 col-sm-12 p-3">
+              <!-- ADD VE EDİT BUTTON -->
+              <button id="addBtn" type="button" class="btn btn-success">
+                Add
+              </button>
+              <button
+                id="editBtn"
+                type="button"
+                style="display: none"
+                onclick="editPersonData()"
+                class="btn btn-warning px-3"
+              >
+                Edit
+              </button>
+            </div>
           </div>
-          <div class="col-lg-2 col-sm-12">
-            <!-- ADD VE EDİT BUTTON -->
-            <button id="addBtn" type="button" class="btn btn-success">
-              Add
-            </button>
-            <button
-              id="editBtn"
-              type="button"
-              style="display: none"
-              onclick="editPersonData()"
-              class="btn btn-warning"
-            >
-              Edit
-            </button>
-          </div>
-        </div>
-      </form>
-    </div>
+        </form>
+      </div>
+    </form>
 
     <!-- SEARCH -->
-    <div class="container p-3">
+    <div class="container p-2">
       <div class="row justify-content-end">
         <div class="col-lg-2 col-sm-12 col-md-4 col-12">
           <input
             type="search"
             placeholder="Search"
             id="searchWord"
-            class="form-control mr-auto "
+            class="form-control mr-auto"
             aria-label="Search"
             aria-describedby="inputGroup-sizing-default"
           />
