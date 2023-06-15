@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -16,7 +16,6 @@
     />
     <title>Telefon Defteri</title>
   </head>
-
   <body>
     <!-- NAVBAR DÜMDÜZ -->
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -66,18 +65,28 @@
           </ul>
           <form class="d-flex" role="search">
             <input
-              class="form-control me-2"
               type="search"
               placeholder="Search"
+              id="searchWord"
+              class="form-control me-2"
               aria-label="Search"
+              aria-describedby="inputGroup-sizing-default"
             />
             <button
               id="searchBtn"
+              type="button"
               onclick="aramaYap()"
               class="btn btn-outline-success"
-              type="button"
             >
               Search
+            </button>
+            <button
+              class="btn btn-outline-danger"
+              id="restart"
+              class="btn btn-danger"
+              type="button"
+            >
+              Sıfırla
             </button>
           </form>
         </div>
@@ -90,7 +99,7 @@
         <h1 class="h1 text-center">Telefon Defteri</h1>
         <form id="addForm" onsubmit="formSubmit(event)">
           <div class="row justify-content-center mt-4">
-            <div class="col-lg-3 col-sm-12 mb-3 p-3 ml-3">
+            <div class="col-lg-5 col-sm-12">
               <!-- NAME İNPUT -->
               <label for="name" class="form-label">First name</label>
               <input
@@ -102,11 +111,8 @@
               />
               <div class="valid-feedback">Looks good!</div>
             </div>
-            <div class="col-lg-1"></div>
-            <div class="col-lg-3 col-sm-12 mb-3 p-3 ">
-              <label for="validationCustom02" class="form-label"
-                >Number</label
-              >
+            <div class="col-lg-5 col-sm-12">
+              <label for="validationCustom02" class="form-label">Number</label>
               <input
                 type="tel"
                 class="form-control"
@@ -118,49 +124,31 @@
               <div class="valid-feedback">Looks good!</div>
             </div>
             <!-- ADD VE EDİT BUTTON -->
-            <div class="text-center col-lg-3 col-sm-12 p-5 ">
-              <button id="addBtn" type="submit" class="btn btn-success">
-                Add
-              </button>
-              <button
-                id="editBtn"
-                type="button"
-                style="display: none"
-                onclick="editPersonData()"
-                class="btn btn-warning px-3"
-              >
-                Edit
-              </button>
+            <div
+              class="text-center col-lg-2 col-sm-12 d-flex align-items-end justify-content-lg-end justify-content-evenly"
+            >
+              <div class="">
+                <button id="addBtn" type="button" class="btn btn-success">
+                  Add
+                </button>
+                <button
+                  id="editBtn"
+                  type="button"
+                  style="display: none"
+                  onclick="editPersonData()"
+                  class="btn btn-warning px-3"
+                >
+                  Edit
+                </button>
+              </div>
             </div>
           </div>
         </form>
       </div>
     </form>
 
-    <!-- SEARCH -->
-    <div class="container p-2">
-      <div class="row justify-content-end">
-        <div class="col-lg-2 col-sm-12 col-md-4 col-12">
-          <input
-            type="search"
-            placeholder="Search"
-            id="searchWord"
-            class="form-control mr-auto"
-            aria-label="Search"
-            aria-describedby="inputGroup-sizing-default"
-          />
-        </div>
-        <div class="col-lg-2 col-sm-12 col-md-4 col-12 px-2">
-          <button id="searchBtn" onclick="aramaYap()" class="btn btn-primary">
-            Search
-          </button>
-          <button id="restart" class="btn btn-danger px-2">Sıfırla</button>
-        </div>
-      </div>
-    </div>
-
     <!-- TABLO -->
-    <div class="container text-center p-4">
+    <div class="container text-center">
       <div class="row">
         <div class="table-responsive">
           <table id="table" class="table table-bordered table-striped-columns">
