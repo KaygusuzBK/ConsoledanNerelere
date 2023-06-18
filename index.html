@@ -1,54 +1,235 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
-      rel="shortcut icon"
-      href="https://picsum.photos/200"
-      type="image/x-icon"
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap"
+      rel="stylesheet"
     />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
+      crossorigin="anonymous"
+    />
     <title>Telefon Defteri</title>
   </head>
-
   <body>
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-            <h1 class="h1">Telefon Defteri</h1>
-            <form id="addForm" onsubmit="formSubmit(e)">
-              <label for="name">Full Name</label>
-              <input type="text" id="name" placeholder="Erdal" /><br /><br />
-              <label for="number">Number</label>
-              <input type="number" id="number" placeholder="0123456789" />
-            </form>
-            <br>
-            <button id="addBtn" type="submit">Add</button>
-                <button
-                  id="editBtn"
-                  style="display: none"
-                  onclick="editPersonData()"x 
-                >
-                  Edit
-                </button>
-              </div>
+    <!-- NAVBAR DÜMDÜZ -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container">
+        <a class="navbar-brand" href="#">Navbar</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Link</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a
+                class="nav-link dropdown-toggle"
+                href="#"
+                role="button"
+                data-bs-toggle="dropdown"
+                aria-expanded="false"
+              >
+                Dropdown
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><hr class="dropdown-divider" /></li>
+                <li>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link disabled">Disabled</a>
+            </li>
+          </ul>
+          <form class="d-flex" role="search">
+            <input
+              type="search"
+              placeholder="Search"
+              id="searchWord"
+              class="form-control me-2"
+              aria-label="Search"
+              aria-describedby="inputGroup-sizing-default"
+            />
+            <div class="d-flex justify-content-between">
+              <button
+                id="searchBtn"
+                type="button"
+                onclick="aramaYap()"
+                class="btn btn-outline-success"
+              >
+                Search
+              </button>
+              <button
+                class="btn btn-outline-danger"
+                id="restart"
+                class="btn btn-danger"
+                type="button"
+              >
+                Sıfırla
+              </button>
             </div>
+          </form>
         </div>
       </div>
-      <br>
-      <button id="searchBtn" onclick="aramaYap()">Search</button>
-      <input type="text" id="searchWord">
-      <button id="restart" class="">Sıfırla</button>
+    </nav>
+
+    <!-- İNPUTLAR -->
+    <form class="was-validated mt-4">
+      <div class="container">
+        <h1 class="h1 text-center">Telefon Defteri</h1>
+        <form id="addForm" onsubmit="formSubmit(event)">
+          <div class="row justify-content-center mt">
+            <div class="col-lg-5 col-sm-12 form-check">
+              <!-- NAME İNPUT -->
+              <label for="name" class="form-label">First name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="name"
+                value=""
+                required
+              />
+              <div class="valid-feedback">Looks good!</div>
+              <div class="invalid-feedback">
+                Düzgün gir
+              </div>
+            </div>
+            <!-- NUMBER İNPUT -->
+            <div class="col-lg-5 col-sm-12">
+              <label for="validationCustom02" class="form-label">Number</label>
+              <input
+                type="tel"
+                class="form-control"
+                id="number"
+                value=" "
+                max="11"
+                required
+              />
+              <div class="valid-feedback">Looks good!</div>
+              <div class="invalid-feedback">
+                Düzgün gir
+              </div>
+            </div>
+            <!-- ADD VE EDİT BUTTON -->
+            <div
+              class="text-center col-lg-2 col-sm-12 d-flex align-items-center justify-content-lg-end justify-content-evenly"
+            >
+              <button id="addBtn" type="button" class="btn btn-success">
+                Add
+              </button>
+              <button
+                id="editBtn"
+                type="button"
+                style="display: none"
+                onclick="editPersonData()"
+                class="btn btn-warning"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+              >
+                Edit
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </form>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">
+              Kullanıcı bilgileri
+            </h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="containter">
+              <div class="row">
+                <div class="col-lg-6 col-sm-12">
+                  <label for="name" class="form-label">First name</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="modalNameBar"
+                    value="test"
+                  />
+                </div>
+                <div class="col-lg-6 col-sm-12">
+                  <label for="validationCustom02" class="form-label"
+                    >Number</label
+                  >
+                  <input
+                    type="tel"
+                    class="form-control"
+                    id="modalNumberBar"
+                    value="12345"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TABLO -->
+    <div class="container text-center mt-4">
       <div class="row">
-        <div class="col-12">
-          <table id="table">
-            <thead>
+        <div class="table-responsive">
+          <table
+            id="table"
+            class="table table-bordered table-striped-columns table alig"
+          >
+            <thead class="table-dark">
               <tr>
-                <th>Full Name</th>
-                <th>Number</th>
-                <th>Update</th>
+                <th scope="col">Full Name</th>
+                <th scope="col">Number</th>
+                <th scope="col">Update</th>
               </tr>
             </thead>
             <tbody id="tbody"></tbody>
@@ -56,7 +237,13 @@
         </div>
       </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+
+    <!-- scriptler -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+      crossorigin="anonymous"
+    ></script>
     <script src="person.js"></script>
     <script src="app.js"></script>
   </body>

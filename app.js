@@ -13,8 +13,8 @@ function CreateTable(person) {
   <td>${person.name}</td>
   <td>${person.number}</td>
   <td>
-    <button onclick="editButton(${person.id})">Edit</button>
-    <button onclick="deleteButton(${person.id})">Delete</button>
+    <button class="btn btn-warning" onclick="editButton(${person.id})">Edit</button>
+    <button class="btn btn-danger" onclick="deleteButton(${person.id})">Delete</button>
   </td> `;
   tbody.appendChild(tr);
 }
@@ -35,7 +35,7 @@ function formSubmit(e) {
   addPerson(name, number);
   renderTable();
   document.getElementById("addForm").reset();
-} 
+}
 
 function deleteButton(id) {
   deletePerson(id);
@@ -86,6 +86,7 @@ searchBtn.onclick = () => {
 };
 
 restart.onclick = () => {
+  document.querySelector("#searchWord").value = "";
   renderTable();
 };
 
