@@ -37,31 +37,6 @@
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="#">Home</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a
-                class="nav-link dropdown-toggle"
-                href="#"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                Dropdown
-              </a>
-              <ul class="dropdown-menu">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><hr class="dropdown-divider" /></li>
-                <li>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </li>
-              </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link disabled">Disabled</a>
-            </li>
           </ul>
           <form class="d-flex" role="search">
             <input
@@ -82,12 +57,11 @@
                 Search
               </button>
               <button
-                class="btn btn-outline-danger"
+                class="btn btn-outline-danger ms-2"
                 id="restart"
-                class="btn btn-danger"
                 type="button"
               >
-                Sıfırla
+                Remove
               </button>
             </div>
           </form>
@@ -99,20 +73,20 @@
     <form class="was-validated mt-4">
       <div class="container">
         <form id="addForm" onsubmit="formSubmit(event)">
-          <div class="row justify-content-center mt">
-            <div class="col-lg-5 col-sm-12 form-check">
-              <!-- NAME İNPUT -->
-              <label for="name" class="form-label">First name</label>
-              <input
-                type="text"
-                class="form-control"
-                id="name"
-                value=""
-                required
-              />
-              <div class="valid-feedback">Looks good!</div>
-              <div class="invalid-feedback">
-                Düzgün gir
+          <div class="row justify-content-center">
+            <div class="col-lg-5 col-sm-12">
+              <div class="form-check p-0">
+                <!-- NAME İNPUT -->
+                <label for="name" class="form-label">First name</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="name"
+                  value=""
+                  required
+                />
+                <div class="valid-feedback">Looks good!</div>
+                <div class="invalid-feedback">Invalid</div>
               </div>
             </div>
             <!-- NUMBER İNPUT -->
@@ -122,14 +96,11 @@
                 type="tel"
                 class="form-control"
                 id="number"
-                value=" "
                 max="11"
                 required
               />
               <div class="valid-feedback">Looks good!</div>
-              <div class="invalid-feedback">
-                Düzgün gir
-              </div>
+              <div class="invalid-feedback">Invalid phone number</div>
             </div>
             <!-- ADD VE EDİT BUTTON -->
             <div
