@@ -13,7 +13,7 @@ function CreateTable(person) {
   <td>${person.name}</td>
   <td>${person.number}</td>
   <td>
-    <button class="btn btn-warning" onclick="editButton(${person.id})">Edit</button>
+    <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="editButton(${person.id})">Edit</button>
     <button class="btn btn-danger" onclick="deleteButton(${person.id})">Delete</button>
   </td> `;
   tbody.appendChild(tr);
@@ -44,7 +44,6 @@ function deleteButton(id) {
 
 function editButton(id) {
   const { name, number } = getPerson(id);
-  document.getElementById("editBtn").style.display = "inline-block";
   setCurrentFormData(id, name, number);
 }
 
