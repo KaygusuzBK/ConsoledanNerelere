@@ -3,9 +3,11 @@ const number = document.querySelector("#number");
 const addBtn = document.querySelector("#addBtn");
 const searchBtn = document.querySelector("#searchBtn");
 const deleteBtn = document.querySelector("#deleteBtn");
-const editBtn = document.querySelector("#editBtn");
+
 const tbody = document.querySelector("#tbody");
 const restart = document.querySelector("#restart");
+var modalNameBar = document.querySelector("#modalNameBar");
+var modalNumberBar = document.querySelector("#modalNumberBar");
 
 function CreateTable(person) {
   let tr = document.createElement("tr");
@@ -101,8 +103,8 @@ function getCurrentSearchData() {
 }
 
 function setCurrentFormData(id, name, number) {
-  document.querySelector("#name").value = name;
-  document.querySelector("#number").value = number;
+  document.querySelector("#modalNameBar").value = name;
+  document.querySelector("#modalNumberBar").value = number;
   document.getElementById("editBtn").onclick = function () {
     editPersonData(id);
   };
