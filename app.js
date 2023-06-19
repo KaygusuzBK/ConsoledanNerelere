@@ -3,14 +3,15 @@ const number = document.querySelector("#number");
 const addBtn = document.querySelector("#addBtn");
 const searchBtn = document.querySelector("#searchBtn");
 const deleteBtn = document.querySelector("#deleteBtn");
-
 const tbody = document.querySelector("#tbody");
 const restart = document.querySelector("#restart");
 var modalNameBar = document.querySelector("#modalNameBar");
 var modalNumberBar = document.querySelector("#modalNumberBar");
+var contactBtn = document.querySelector("#contactBtn");
 
 function CreateTable(person) {
   let tr = document.createElement("tr");
+
   tr.innerHTML = `
   <td>${person.name}</td>
   <td>${person.number}</td>
@@ -19,6 +20,9 @@ function CreateTable(person) {
     <button class="btn btn-danger" onclick="deleteButton(${person.id})">Delete</button>
   </td> `;
   tbody.appendChild(tr);
+  if (tbody.innerHTML !== "") {
+    contactBtn.style.display = "none";
+  }
 }
 
 function renderTable() {
@@ -42,6 +46,9 @@ function formSubmit(e) {
 function deleteButton(id) {
   deletePerson(id);
   renderTable();
+  if (tbody.childElementCount === 0) {
+    contactBtn.style.display = "inline-block";
+  }
 }
 
 function editButton(id) {
@@ -60,6 +67,10 @@ function searchPerson(searchWord) {
     return person.name === searchWord || person.number === searchWord;
   });
   return filtered;
+}
+
+function redirectInput() {
+  document.getElementById("name").focus();
 }
 
 addBtn.onclick = () => {
