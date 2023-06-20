@@ -113,11 +113,12 @@ function getCurrentFormData() {
 }
 
 function getCurrentSearchData() {
-  if (document.querySelector("#searchWord").value.trim() === "") {
-    renderTable();
+  if(searchWord.value.trim() === ""){
+    return;
+  } else {
+    const searchWord = document.querySelector("#searchWord").value.trim();
+    return { searchWord };
   }
-  const searchWord = document.querySelector("#searchWord").value.trim();
-  return { searchWord };
 }
 
 function setCurrentFormData(id, name, number) {
