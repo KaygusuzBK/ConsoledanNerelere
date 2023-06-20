@@ -8,6 +8,7 @@ const restart = document.querySelector("#restart");
 var modalNameBar = document.querySelector("#modalNameBar");
 var modalNumberBar = document.querySelector("#modalNumberBar");
 var contactBtn = document.querySelector("#contactBtn");
+const modalUpdateBtn = document.querySelector("#modalUpdateBtn");
 
 function CreateTable(person) {
   let tr = document.createElement("tr");
@@ -16,7 +17,7 @@ function CreateTable(person) {
   <td>${person.name}</td>
   <td>${person.number}</td>
   <td>
-    <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="editButton(${person.id})">Edit</button>
+    <button class="btn btn-warning " data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="editButton(${person.id})">Edit</button>
     <button class="btn btn-danger" onclick="deleteButton(${person.id})">Delete</button>
   </td> `;
   tbody.appendChild(tr);
@@ -57,7 +58,7 @@ function editButton(id) {
 }
 
 function editPersonData(id) {
-  const { name, number } = getCurrentFormData();
+  const { name, number } = getCurrentModalData();
   editPerson(id, name, number);
   renderTable();
 }
@@ -73,27 +74,30 @@ function redirectInput() {
   document.getElementById("name").focus();
 }
 
+function getCurrentModalData() {
+  const name = document.querySelector("#modalNameBar").value.trim();
+  const number = document.querySelector("#modalNumberBar").value.trim();
+  return { name, number };
+}
+
 addBtn.onclick = () => {
   const { name, number } = getCurrentFormData();
   addPerson(name, number);
   renderTable();
 };
 
-editBtn.onclick = () => {
-  const { name, number } = getCurrentFormData();
+modalUpdateBtn.onclick = () => {
+  const { name, number } = getCurrentModalData();
   editPersonData(name, number);
   renderTable();
 };
 
 searchBtn.onclick = () => {
-  const tbody = document.querySelector("#tbody");
   tbody.innerHTML = "";
   const { searchWord } = getCurrentSearchData();
   const persons = searchPerson(searchWord);
-  console.log(persons);
   persons.forEach((person) => {
     CreateTable(person);
-    console.log(person);
   });
 };
 
@@ -109,6 +113,9 @@ function getCurrentFormData() {
 }
 
 function getCurrentSearchData() {
+  if (document.querySelector("#searchWord").value.trim() === "") {
+    renderTable();
+  }
   const searchWord = document.querySelector("#searchWord").value.trim();
   return { searchWord };
 }
@@ -116,7 +123,7 @@ function getCurrentSearchData() {
 function setCurrentFormData(id, name, number) {
   document.querySelector("#modalNameBar").value = name;
   document.querySelector("#modalNumberBar").value = number;
-  document.getElementById("editBtn").onclick = function () {
+  document.getElementById("modalUpdateBtn").onclick = function () {
     editPersonData(id);
   };
 }
