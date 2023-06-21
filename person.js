@@ -9,7 +9,13 @@ class Person {
 }
 
 function addPerson(name, number) {
-  if (name !== "" && number !== "") {
+  if (
+    name !== "" &&
+    number !== "" &&
+    name.length <= 20 &&
+    number.length === 11 &&
+    !isNaN(number)
+  ) {
     var id = phonebook.length + 1;
     var person = new Person(id, name, number);
     phonebook.push(person);
@@ -35,10 +41,18 @@ function deletePerson(deleteId) {
 }
 
 function editPerson(id, name, number) {
-  const person = phonebook.find((person) => person.id === id);
-  if (person) {
-    person.name = name;
-    person.number = number;
+  if (
+    name !== "" &&
+    number !== "" &&
+    name.length <= 20 &&
+    number.length === 11 &&
+    !isNaN(number)
+  ) {
+    const person = phonebook.find((person) => person.id === id);
+    if (person) {
+      person.name = name;
+      person.number = number;
+    }
   }
 }
 

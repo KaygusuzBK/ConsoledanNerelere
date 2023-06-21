@@ -3,20 +3,27 @@ const number = document.querySelector("#number");
 const addBtn = document.querySelector("#addBtn");
 const searchBtn = document.querySelector("#searchBtn");
 const deleteBtn = document.querySelector("#deleteBtn");
-const editBtn = document.querySelector("#editBtn");
 const tbody = document.querySelector("#tbody");
 const restart = document.querySelector("#restart");
+var modalNameBar = document.querySelector("#modalNameBar");
+var modalNumberBar = document.querySelector("#modalNumberBar");
+var contactBtn = document.querySelector("#contactBtn");
+const modalUpdateBtn = document.querySelector("#modalUpdateBtn");
 
 function CreateTable(person) {
   let tr = document.createElement("tr");
+
   tr.innerHTML = `
   <td>${person.name}</td>
   <td>${person.number}</td>
   <td>
-    <button class="btn btn-warning" onclick="editButton(${person.id})">Edit</button>
+    <button class="btn btn-warning " data-bs-toggle="modal" data-bs-target="#editModal" onclick="editButton(${person.id})">Edit</button>
     <button class="btn btn-danger" onclick="deleteButton(${person.id})">Delete</button>
   </td> `;
   tbody.appendChild(tr);
+  if (tbody.innerHTML !== "") {
+    contactBtn.style.display = "none";
+  }
 }
 
 function renderTable() {
@@ -40,16 +47,18 @@ function formSubmit(e) {
 function deleteButton(id) {
   deletePerson(id);
   renderTable();
+  if (tbody.childElementCount === 0) {
+    contactBtn.style.display = "inline-block";
+  }
 }
 
 function editButton(id) {
   const { name, number } = getPerson(id);
-  document.getElementById("editBtn").style.display = "inline-block";
   setCurrentFormData(id, name, number);
 }
 
 function editPersonData(id) {
-  const { name, number } = getCurrentFormData();
+  const { name, number } = getCurrentModalData();
   editPerson(id, name, number);
   renderTable();
 }
@@ -61,28 +70,39 @@ function searchPerson(searchWord) {
   return filtered;
 }
 
+function redirectInput() {
+  document.getElementById("name").focus();
+}
+
+function getCurrentModalData() {
+  const name = document.querySelector("#modalNameBar").value.trim();
+  const number = document.querySelector("#modalNumberBar").value.trim();
+  return { name, number };
+}
+
 addBtn.onclick = () => {
   const { name, number } = getCurrentFormData();
   addPerson(name, number);
   renderTable();
 };
 
-editBtn.onclick = () => {
-  const { name, number } = getCurrentFormData();
+modalUpdateBtn.onclick = () => {
+  const { name, number } = getCurrentModalData();
   editPersonData(name, number);
   renderTable();
 };
 
 searchBtn.onclick = () => {
-  const tbody = document.querySelector("#tbody");
   tbody.innerHTML = "";
   const { searchWord } = getCurrentSearchData();
-  const persons = searchPerson(searchWord);
-  console.log(persons);
-  persons.forEach((person) => {
-    CreateTable(person);
-    console.log(person);
-  });
+  const filtered = searchPerson(searchWord);
+  if (filtered.length === 0) {
+    renderTable();
+  } else {
+    filtered.forEach((person) => {
+      CreateTable(person);
+    });
+  }
 };
 
 restart.onclick = () => {
@@ -102,9 +122,9 @@ function getCurrentSearchData() {
 }
 
 function setCurrentFormData(id, name, number) {
-  document.querySelector("#name").value = name;
-  document.querySelector("#number").value = number;
-  document.getElementById("editBtn").onclick = function () {
+  document.querySelector("#modalNameBar").value = name;
+  document.querySelector("#modalNumberBar").value = number;
+  document.getElementById("modalUpdateBtn").onclick = function () {
     editPersonData(id);
   };
 }
