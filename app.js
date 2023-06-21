@@ -95,10 +95,14 @@ modalUpdateBtn.onclick = () => {
 searchBtn.onclick = () => {
   tbody.innerHTML = "";
   const { searchWord } = getCurrentSearchData();
-  const persons = searchPerson(searchWord);
-  persons.forEach((person) => {
-    CreateTable(person);
-  });
+  const filtered = searchPerson(searchWord);
+  if (filtered.length === 0) {
+    renderTable();
+  } else {
+    filtered.forEach((person) => {
+      CreateTable(person);
+    });
+  }
 };
 
 restart.onclick = () => {
@@ -113,12 +117,8 @@ function getCurrentFormData() {
 }
 
 function getCurrentSearchData() {
-  if(searchWord.value.trim() === ""){
-    return;
-  } else {
-    const searchWord = document.querySelector("#searchWord").value.trim();
-    return { searchWord };
-  }
+  const searchWord = document.querySelector("#searchWord").value.trim();
+  return { searchWord };
 }
 
 function setCurrentFormData(id, name, number) {
