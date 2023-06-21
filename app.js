@@ -17,7 +17,7 @@ function CreateTable(person) {
   <td>${person.name}</td>
   <td>${person.number}</td>
   <td>
-    <button class="btn btn-warning " data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="editButton(${person.id})">Edit</button>
+    <button class="btn btn-warning " data-bs-toggle="modal" data-bs-target="#editModal" onclick="editButton(${person.id})">Edit</button>
     <button class="btn btn-danger" onclick="deleteButton(${person.id})">Delete</button>
   </td> `;
   tbody.appendChild(tr);
